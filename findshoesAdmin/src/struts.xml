@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+   <include file="struts-users.xml"></include> 
+
+	<package name="user" extends="struts-default">
+	<action name ="uploadImg" class ="com.action.uploadImgAction" >
+         <!-- 限制图片的格式和图片的大小 -->  
+            <interceptor-ref name="fileUpload">  
+                <param name="allowedTypes">  
+                  image/bmp,image/png,image/gif,image/jpeg,image/pjpeg  
+                </param>  
+            </interceptor-ref>  
+		<!--默认的拦截器，必须要写   -->
+            <interceptor-ref name="defaultStack" />  
+            
+         <result name="success">/artadd-succ.jsp</result>
+         <result name="error">/article-add.jsp</result>
+     </action>
+     
+     	<action name ="addShoe" class ="com.action.shoesAction" method="addShoe" >         
+         <result name="success">/shoes-succ.jsp</result>
+         <result name="error">/shoes-add.jsp</result>
+     </action>
+     
+     	<action name="goodsDetail" class="com.action.goodsAction" method="goodsDetail">
+	        <result name="success">/p-detail.jsp</result>
+	        <!-- <result name="error">/ErrPage.jsp</result> -->
+	    </action>
+     
+<!--      <action name ="searchGoods" class ="com.action.goodsAction" method="searchGoods" >         
+         <result name="success">/search-succ.jsp</result>
+         <result name="error">/search-err.jsp</result>
+     </action> -->
+     
+<!--      <action name ="deleSelect" class ="com.action.deleSelectAction" >
+     	<result name="success" >/article.jsp</result>
+     	<result name="success" type="json">/article.jsp</result>
+     </action> -->
+	</package>
+	
+	<package name="ajaxDemo" extends="json-default">
+	   <action name ="deleSelect" class ="com.action.deleSelectAction" method = "articleSlt">
+	        <result name="success" type="json"></result>
+	    </action>
+	    
+	   <action name ="shoesSlt" class ="com.action.deleSelectAction" method = "shoesSlt">
+	        <result name="success" type="json"></result>
+	    </action>
+	    
+	    
+ 	    <action name ="goPage" class ="com.action.goodsAction" method="goPage">
+	        <result name="success" type="json"></result>
+	    </action>
+	    
+	    <action name ="shoespubChg" class ="com.action.chgPublishAction" method="shoespubChg">
+	        <result name="success" type="json"></result>
+	    </action>
+	    
+	   <action name ="searchGoods" class ="com.action.goodsAction" method="searchGoods" >         
+         <result name="success" type="json"></result>
+     	</action>
+     	
+     	<action name ="chgGoods" class ="com.action.goodsAction" method="chgGoods" >         
+         <result name="success" type="json"></result>
+     	</action>
+	    
+	</package>
+	
+	
+</struts>    
